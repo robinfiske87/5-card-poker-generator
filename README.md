@@ -28,6 +28,7 @@ The project is set up for postgres db. If you have a db available. Set url in .e
 Docker compose initiates a postgres docker container. Must be connected. 
 
 TODO: 
+
 [ ] API documentation. Swagger?
 
 [ ] More options to view old hands in API 
