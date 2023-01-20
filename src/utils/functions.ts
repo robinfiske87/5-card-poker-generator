@@ -1,19 +1,3 @@
-export const sortHands = (a: Hand, b: Hand) => {
-  if (a.evalVal !== b.evalVal) {
-    return b.evalVal - a.evalVal;
-  }
-  const aHand = a.hand.split(",");
-  const bHand = b.hand.split(",");
-  for (let i = 0; i < aHand.length; i++) {
-    if (getCardValue(aHand[i] as string) !== getCardValue(bHand[i] as string)) {
-      return (
-        getCardValue(bHand[i] as string) - getCardValue(aHand[i] as string)
-      );
-    }
-  }
-  return 0;
-};
-
 export const getCardValue = (card: string) => {
   const cardValue = card[0];
   switch (cardValue) {
