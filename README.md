@@ -29,9 +29,14 @@ Docker compose initiates a postgres docker container. Must be connected.
 
 TODO: 
 [ ] API documentation. Swagger?
+
 [ ] More options to view old hands in API 
+
 [ ] Improved error handling and validation on API routes
+
 [ ] More elaborate evaluation of cards. 
+
 [ ] Implement use of available APIs
+
 [ ] Implement a heads up simulation show case
 
