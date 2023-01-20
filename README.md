@@ -1,6 +1,8 @@
 # :black_joker: 5 card poker hand generator :black_joker:
 
-Created with Nextjs. Deployed with docker.
+Created with Nextjs. Deployed with docker. Example site on:
+
+#### https://5-card-poker-generator.vercel.app
 
 Web app that display 5 random cards poker hand. Result is given a simple analyses.
 On asking for a new hand, the old hand is send with evaluation to API for persistence.
