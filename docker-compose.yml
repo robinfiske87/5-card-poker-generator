@@ -13,6 +13,8 @@ services:
     image: poker-hand-generator
     environment:
       - DATABASE_URL="postgresql://postgres:postgres@localhost:5432/postgres?schema=public"
+    depends_on:
+      - db
   db: 
     image: postgres:12.3
     environment:

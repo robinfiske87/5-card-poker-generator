@@ -7,6 +7,19 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  await NextCors(req, res, {
+    // Options
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    origin: "*",
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  });
+
+  if (req.method !== "GET") {
+    res.status(405).json({
+      error: "Method not allowed",
+    });
+  }
+
   const suits = ["S", "D", "C", "H"];
   const values = [
     "A",
@@ -52,7 +65,7 @@ export default async function handler(
   const pokerHand = pickRandomCards(newDeck);
 
   const evaluationHandName = analyzeHand(pokerHand);
-  // eslint-disable-next-line
+
   const evaluationValue = rankHand(
     evaluationHandName as
       | "Royal Flush"
@@ -66,14 +79,6 @@ export default async function handler(
       | "Pair"
       | "High Card"
   );
-
-  // eslint-disable-next-line
-  await NextCors(req, res, {
-    // Options
-    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
-    origin: "*",
-    optionsSuccessStatus: 200, // s ome legacy browsers (IE11, various SmartTVs) choke on 204
-  });
 
   res.status(200).json({
     pokerHand: pokerHand,

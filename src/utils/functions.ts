@@ -34,59 +34,59 @@ export function rankHand(evaluation: keyof typeof rank): number {
 }
 
 export function analyzeHand(hand: string[]): string {
-    const handRanks = hand.map((card) => card[0]);
-    const handSuits = hand.map((card) => card[1]);
+  const handRanks = hand.map((card) => card[0]);
+  const handSuits = hand.map((card) => card[1]);
 
-    // Check for flush
-    const isFlush = handSuits.every((suit) => suit === handSuits[0]);
+  // Check for flush
+  const isFlush = handSuits.every((suit) => suit === handSuits[0]);
 
-    // Check for straight
-    handRanks.sort();
-    // eslint-disable-next-line
-    const isStraight = handRanks.every(
-      (rank, i) => rank === (handRanks[0] as string) + i
-    );
+  // Check for straight
+  handRanks.sort();
+  // eslint-disable-next-line
+  const isStraight = handRanks.every(
+    (rank, i) => rank === (handRanks[0] as string) + i
+  );
 
-    // Check for Royal flush
-    const isRoyalFlush = isFlush && isStraight && handRanks[4] === "A";
+  // Check for Royal flush
+  const isRoyalFlush = isFlush && isStraight && handRanks[4] === "A";
 
-    // Check for Four of a Kind
-    const fourOfAKind = handRanks.filter(
-      (rank) => handRanks.filter((r) => r === rank).length === 4
-    );
+  // Check for Four of a Kind
+  const fourOfAKind = handRanks.filter(
+    (rank) => handRanks.filter((r) => r === rank).length === 4
+  );
 
-    // Check for Three of a Kind
-    const threeOfAKind = handRanks.filter(
-      (rank) => handRanks.filter((r) => r === rank).length === 3
-    );
+  // Check for Three of a Kind
+  const threeOfAKind = handRanks.filter(
+    (rank) => handRanks.filter((r) => r === rank).length === 3
+  );
 
-    // Check for two pairs
-    const twoPairs = handRanks.filter(
-      (rank) => handRanks.filter((r) => r === rank).length === 2
-    );
+  // Check for two pairs
+  const twoPairs = handRanks.filter(
+    (rank) => handRanks.filter((r) => r === rank).length === 2
+  );
 
-    // Check for Pairs
-    const pairs = handRanks.filter(
-      (rank) => handRanks.filter((r) => r === rank).length === 2
-    );
+  // Check for Pairs
+  const pairs = handRanks.filter(
+    (rank) => handRanks.filter((r) => r === rank).length === 2
+  );
 
-    if (isRoyalFlush) {
-      return "Royal Flush";
-    } else if (isFlush) {
-      return "Flush";
-    } else if (isStraight) {
-      return "Straight";
-    } else if (fourOfAKind.length > 0) {
-      return "Four of a Kind";
-    } else if (threeOfAKind.length > 0 && pairs.length > 0) {
-      return "Full House";
-    } else if (threeOfAKind.length > 0) {
-      return "Three of a Kind";
-    } else if (twoPairs.length === 4) {
-      return "Two Pairs";
-    } else if (pairs.length === 2) {
-      return "Pair";
-    } else {
-      return "High Card";
-    }
+  if (isRoyalFlush) {
+    return "Royal Flush";
+  } else if (isFlush) {
+    return "Flush";
+  } else if (isStraight) {
+    return "Straight";
+  } else if (fourOfAKind.length > 0) {
+    return "Four of a Kind";
+  } else if (threeOfAKind.length > 0 && pairs.length > 0) {
+    return "Full House";
+  } else if (threeOfAKind.length > 0) {
+    return "Three of a Kind";
+  } else if (twoPairs.length === 4) {
+    return "Two Pairs";
+  } else if (pairs.length === 2) {
+    return "Pair";
+  } else {
+    return "High Card";
   }
+}

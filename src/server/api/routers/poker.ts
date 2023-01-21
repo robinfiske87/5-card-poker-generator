@@ -6,9 +6,9 @@ export const pokerRouter = createTRPCRouter({
   submitHand: publicProcedure
     .input(
       z.object({
-        pokerHand: z.string(),
-        evaulationValue: z.number(),
-        evaluationHandName: z.string(),
+        pokerHand: z.string().min(10).max(20),
+        evaulationValue: z.number().min(1).max(10),
+        evaluationHandName: z.string().min(3).max(20),
       })
     )
     .mutation(async ({ input }) => {
