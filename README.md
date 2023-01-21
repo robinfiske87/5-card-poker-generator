@@ -18,7 +18,9 @@ I also use Prisma ORM which works particularly well with tRPC and nextj typescri
 
 ### Docker
 To initiate project with docker:
+
 -- docker build -t 5-card-poker --build-arg NEXT_PUBLIC_CLIENTVAR=clientvar .
+
 -- docker run -p 3000:3000 -e DATABASE_URL="database_url_goes_here" 5-card-poker
 
 ### db
