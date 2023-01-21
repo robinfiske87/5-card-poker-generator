@@ -19,13 +19,13 @@ export default async function handler(
   });
 
   if(req.method !== 'POST') {
-    res.status(405).json({
+    return res.status(405).json({
       error: "Method not allowed",
     });
   }
 
   if (!req.body.hands) {
-    res.status(404).json({
+    return res.status(404).json({
       error: "hands must be an array",
     });
   }
@@ -35,17 +35,12 @@ export default async function handler(
   // };
 
   if (!Array.isArray(body.hands)) {
-    res.status(404).json({
+    return res.status(404).json({
       error: "hands must be an array",
     });
   }
-  if (!body.hands) {
-    res.status(404).json({
-      winner: undefined,
-    });
-  }
 
-  const mappedHand = body.hands.map((hand: any) => {
+  const mappedHand = body.hands.map((hand: any = []) => {
     const cards = hand.split(",");
     const name = analyzeHand(cards);
     const value = rankHand(
