@@ -10,7 +10,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-
   await NextCors(req, res, {
     // Options
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
@@ -18,7 +17,7 @@ export default async function handler(
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   });
 
-  if(req.method !== 'POST') {
+  if (req.method !== "POST") {
     return res.status(405).json({
       error: "Method not allowed",
     });
@@ -70,10 +69,12 @@ export default async function handler(
       winner: undefined,
     });
   }
+
   let highValue = 0;
   let highIndex = 0;
-  mappedHand.map((hand, index) => {
+  mappedHand.forEach((hand, index) => {
     if (hand.evalVal > highValue) {
+      highValue = hand.evalVal;
       highIndex = index;
     }
   });
@@ -81,6 +82,6 @@ export default async function handler(
   winner = mappedHand[highIndex];
 
   res.status(200).json({
-    winner: winner,
+    winner,
   });
 }

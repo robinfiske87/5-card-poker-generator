@@ -90,3 +90,19 @@ export function analyzeHand(hand: string[]): string {
     return "High Card";
   }
 }
+
+interface iOldHands {
+  id: number;
+  hand: string;
+  evalValValue: number;
+  evalHand: string;
+}
+
+export function formatHands(oldData: iOldHands[]) {
+  let hands: string[] = [];
+  const array = Array.isArray(oldData) ? oldData : [];
+  array.forEach((element) => {
+    hands.push(element.hand);
+  });
+  return hands;
+}
