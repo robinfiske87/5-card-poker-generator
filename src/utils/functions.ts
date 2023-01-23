@@ -41,11 +41,35 @@ export function analyzeHand(hand: string[]): string {
   const isFlush = handSuits.every((suit) => suit === handSuits[0]);
 
   // Check for straight
+  function isStraightChecker(hand: string[]) : boolean {
+    // Create an object to store the value of each card
+    const cardValues: {[key: string]: number} = {
+        '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, 'T': 10, 'J': 11, 'Q': 12, 'K': 13, 'A': 14
+    };
+    hand.sort((a, b) => {
+        if(cardValues.hasOwnProperty(a[0] as string) && cardValues.hasOwnProperty(b[0] as string)){
+            return cardValues[a[0] as string]! - cardValues[b[0] as string]!;
+        }
+        return 0;
+    });
+    // Check for a straight
+    for (let i = 0; i < hand.length - 1; i++) {
+      if (cardValues.hasOwnProperty(hand[i] as string[0]) && cardValues.hasOwnProperty(hand[i + 1] as string [0]) 
+      && cardValues[hand[i] as string [0] as string]! + 1 !== cardValues[hand[i + 1] as string [0]] ) {
+          return false;
+      }
+  }
+  
+    return true;
+}
+
   handRanks.sort();
-  // eslint-disable-next-line
-  const isStraight = handRanks.every(
-    (rank, i) => rank === (handRanks[0] as string) + i
-  );
+
+  //const isStraight = handRanks.every(
+    //(rank, i) => rank === (handRanks[0] as string) + i
+  //);
+
+  const isStraight = isStraightChecker(handRanks as string[]);
 
   // Check for Royal flush
   const isRoyalFlush = isFlush && isStraight && handRanks[4] === "A";
